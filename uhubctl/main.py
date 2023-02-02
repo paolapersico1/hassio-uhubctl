@@ -94,6 +94,8 @@ class UHUBCTL:
 
         result = stdout.strip().split("\n")
 
+        logger.debug(result)
+
         try:
             lineidxs_hubheader = [
                 index for index, line in enumerate(result) if "status for hub" in line
@@ -101,7 +103,7 @@ class UHUBCTL:
             if not len(lineidxs_hubheader) > 0:
                 raise ValueError
         except ValueError:
-            logger.error("Failed to find any smart hubs")
+            logger.error("Failed to find any hubs")
             return False
 
         for lineidx_hubheader in lineidxs_hubheader:
@@ -165,7 +167,7 @@ class UHUBCTL:
 
     def fetch_allinfo(self):
         try:
-            logger.debug("Fetch current status for all smart hubs")
+            logger.debug("Fetch current status for all hubs")
             ret = run_in_shell("uhubctl -f")
             stdout = ret.stdout
 
