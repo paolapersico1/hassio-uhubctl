@@ -195,8 +195,8 @@ class UHUBCTL:
 
         try:
             ret = run_in_shell(
-                "uhubctl -f -l {location} -a {action} -p {port} -r 500".format(
-                    location=port.hub_location, port=port.number, action=action
+                "uhubctl -f -l {location} -a {action} -r 1000".format(
+                    location=port.hub_location, action=action
                 )
             )
             stdout = ret.stdout
