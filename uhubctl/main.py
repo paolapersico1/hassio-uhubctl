@@ -108,7 +108,7 @@ class UHUBCTL:
 
         for lineidx_hubheader in lineidxs_hubheader:
             parsed_line = re.search(
-                r"status for hub ([0-9-]+) \[([0-9a-f]{4}):([0-9a-f]{4}).*USB (\d)\.\d{2}, (\d+) ports",
+                r"status for hub ([0-9-.]+) \[([0-9a-f]{4}):([0-9a-f]{4}).*USB (\d)\.\d{2}, (\d+) ports",
                 result[lineidx_hubheader],
             )
             if parsed_line is None:
