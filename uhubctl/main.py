@@ -305,7 +305,7 @@ class USBHUB_MQTT:
         try:
             command = parsed_topic[-1]
             hub_name = parsed_topic[-2]
-            hub_location = re.search(r"HUB([0-9-]+)", hub_name).group(1)
+            hub_location = re.search(r"HUB([0-9-.]+)", hub_name).group(1)
         except IndexError:
             logger.error("Failed to parse the topic string")
             return False
