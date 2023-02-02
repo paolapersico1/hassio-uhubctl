@@ -327,7 +327,7 @@ class USBHUB_MQTT:
 
             try:
                 action = message.payload.decode()
-                UHUBCTL().do_action(port, action)
+                UHUBCTL(self._cfg["TIMEOUT"], self._cfg["RETRIES"]).do_action(port, action)
             except:
                 logger.exception("Failed to execute an action")
 
