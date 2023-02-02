@@ -15,7 +15,7 @@ handler.setFormatter(logging.Formatter("[%(asctime)s] [%(funcName)s] %(message)s
 logger.propagate = False
 
 
-def run_in_shell(command, timeout=10):
+def run_in_shell(command, timeout=60):
     try:
         logger.debug("Command kicked: {command}".format(command=command))
         ret = subprocess.run(
