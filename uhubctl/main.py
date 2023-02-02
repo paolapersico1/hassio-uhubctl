@@ -15,7 +15,7 @@ handler.setFormatter(logging.Formatter("[%(asctime)s] [%(funcName)s] %(message)s
 logger.propagate = False
 
 
-def run_in_shell(command, timeout=100):
+def run_in_shell(command, timeout=10):
     try:
         logger.debug("Command kicked: {command}".format(command=command))
         ret = subprocess.run(
@@ -89,6 +89,10 @@ class USBPORT:
 
 
 class UHUBCTL:
+    def __init__(self, timeout, retries):
+        self._timeout = timeout
+        self._retries = retries
+
     def _parser(self, stdout, action=False):
         ret = []
 
@@ -195,9 +199,9 @@ class UHUBCTL:
 
         try:
             ret = run_in_shell(
-                "uhubctl -f -l {location} -a {action} -r 1000".format(
-                    location=port.hub_location, action=action
-                )
+                "uhubctl -f -l {location} -a {action} -r {retries}".format(
+                    location=port.hub_location, action=action, retries=self._retries
+                ), self._timeout
             )
             stdout = ret.stdout
 
@@ -286,7 +290,7 @@ class USBHUB_MQTT:
             )
         )
 
-        self._usbhubs = UHUBCTL().fetch_allinfo()
+        self._usbhubs = UHUBCTL(self._cfg["TIMEOUT"], self._cfg["RETRIES"]).fetch_allinfo()
 
         self.send_mqtt_hubstatus(client)
         client.publish(
