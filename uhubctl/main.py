@@ -90,7 +90,7 @@ class USBPORT:
 
 class UHUBCTL:
     def __init__(self, timeout, retries):
-        self._timeout = timeout
+        self._timeout = float(timeout)
         self._retries = retries
 
     def _parser(self, stdout, action=False):
