@@ -15,7 +15,7 @@ handler.setFormatter(logging.Formatter("[%(asctime)s] [%(funcName)s] %(message)s
 logger.propagate = False
 
 
-def run_in_shell(command, timeout=60):
+def run_in_shell(command, timeout=100):
     try:
         logger.debug("Command kicked: {command}".format(command=command))
         ret = subprocess.run(
@@ -195,7 +195,7 @@ class UHUBCTL:
 
         try:
             ret = run_in_shell(
-                "uhubctl -f -l {location} -a {action} -r 1000".format(
+                "uhubctl -f -l {location} -a {action} -r 500".format(
                     location=port.hub_location, port=port.number, action=action
                 )
             )
