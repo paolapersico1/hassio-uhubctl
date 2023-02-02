@@ -195,7 +195,7 @@ class UHUBCTL:
 
         try:
             ret = run_in_shell(
-                "uhubctl -f -l {location} -p {port} -a {action} -r 100 -w 20".format(
+                "uhubctl -f -l {location} -p {port} -a {action} -r 1000".format(
                     location=port.hub_location, port=port.number, action=action
                 )
             )
