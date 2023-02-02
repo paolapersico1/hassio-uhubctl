@@ -1,5 +1,5 @@
 {
-    "name": "MQTT Bridge for uhubctl",
-    "url": "https://github.com/mochipon/hassio-uhubctl",
-    "maintainer": "@mochipon"
+    "name": "Forced MQTT Bridge for uhubctl",
+    "url": "https://github.com/paolapersico1/hassio-uhubctl",
+    "maintainer": "@paolapersico1"
 }
