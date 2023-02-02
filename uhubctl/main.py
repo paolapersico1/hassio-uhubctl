@@ -199,7 +199,7 @@ class UHUBCTL:
 
         try:
             ret = run_in_shell(
-                "uhubctl -f -l {location} -a {action} -r {retries}".format(
+                "uhubctl -f -l {location} -a {action} -p 1-4 -r {retries}".format(
                     location=port.hub_location, action=action, retries=self._retries
                 ), self._timeout
             )
